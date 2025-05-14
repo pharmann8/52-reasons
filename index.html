@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>52 Reasons I Love You</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Tangerine:wght@700&display=swap');
+        
+        :root {
+            --table-green: #0a5c36;
+            --dark-green: #073f25;
+            --gold: #d4af37;
+            --card-white: #fff;
+            --red: #c41e3a;
+            --black: #000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--table-green);
+            background-image: 
+                radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%),
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23073f25' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            color: var(--card-white);
+            font-family: 'Playfair Display', serif;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .title {
+            text-align: center;
+            font-family: 'Tangerine', cursive;
+            font-size: 5rem;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2rem;
+        }
+
+        .instructions {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--gold);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .instructions p {
+            margin-bottom: 10px;
+            color: var(--card-white);
+            font-size: 1.1rem;
+        }
+
+        .counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--gold);
+            padding: 10px 15px;
+            border-radius: 50px;
+            border: 2px solid var(--gold);
+            font-size: 1.2rem;
+            z-index: 100;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            perspective: 1000px;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            width: 180px;
+            height: 250px;
+            position: relative;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+            cursor: default;
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-front {
+            background-color: var(--card-white);
+            background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23d4af37' fill-opacity='0.1'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            border: 5px solid var(--gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--dark-green);
+        }
+
+        .card-back {
+            background-color: var(--card-white);
+            color: var(--dark-green);
+            transform: rotateY(180deg);
+            border: 5px solid var(--gold);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9rem;
+            text-align: center;
+            overflow: auto;
+        }
+
+        .card-design {
+            width: 80%;
+            height: 80%;
+            border: 2px solid var(--gold);
+            border-radius: 5px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 5px;
+        }
+
+        .card-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .card-value-top {
+            align-self: flex-start;
+        }
+
+        .card-value-bottom {
+            align-self: flex-end;
+            transform: rotate(180deg);
+        }
+
+        .card-suit {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .red {
+            color: var(--red);
+        }
+
+        .black {
+            color: var(--black);
+        }
+
+        .heart-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        .heart {
+            font-size: 20rem;
+            color: var(--red);
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .heart:hover {
+            transform: scale(1.1);
+        }
+
+        .final-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            flex-direction: column;
+        }
+
+        .final-message h2 {
+            font-family: 'Tangerine', cursive;
+            font-size: 8rem;
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            margin-bottom: 2rem;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .restart-btn {
+            background-color: var(--gold);
+            color: var(--dark-green);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 3s ease-in;
+        }
+
+        .restart-btn:hover {
+            background-color: var(--card-white);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(2); opacity: 0.5; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(1000px) rotate(720deg); opacity: 0; }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3.5rem;
+            }
+            .card {
+                width: 140px;
+                height: 195px;
+            }
+            .card-value {
+                font-size: 1.4rem;
+            }
+            .card-suit {
+                font-size: 1.6rem;
+            }
+            .card-back {
+                font-size: 0.75rem;
+                padding: 10px;
+            }
+            .heart {
+                font-size: 12rem;
+            }
+            .final-message h2 {
+                font-size: 5rem;
+                text-align: center;
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2.8rem;
+            }
+            .card {
+                width: 120px;
+                height: 168px;
+            }
+            .card-value {
+                font-size: 1.2rem;
+            }
+            .card-suit {
+                font-size: 1.4rem;
+            }
+            .card-back {
+                font-size: 0.65rem;
+                padding: 8px;
+            }
+            .heart {
+                font-size: 8rem;
+            }
+            .final-message h2 {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">52 Reasons I Love You</h1>
+        
+        <div class="instructions">
+            <p>Draw a card by clicking on it.</p>
+            <p>Each card reveals a reason why I love you.</p>
+            <p>Continue until you've seen all 52 cards.</p>
+            <p>A surprise awaits when you finish...</p>
+        </div>
+        
+        <div class="counter">Cards: <span id="counter">0</span>/52</div>
+        
+        <div class="cards-container" id="cardsContainer">
+            <!-- Cards will be generated here -->
+        </div>
+    </div>
+    
+    <div class="heart-container" id="heartContainer">
+        <div class="heart" id="heart">❤️</div>
+    </div>
+    
+    <div class="final-message" id="finalMessage">
+        <h2>I love you MORE.</h2>
+        <button class="restart-btn" id="restartBtn">Play Again</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cardsContainer = document.getElementById('cardsContainer');
+            const heartContainer = document.getElementById('heartContainer');
+            const finalMessage = document.getElementById('finalMessage');
+            const heart = document.getElementById('heart');
+            const restartBtn = document.getElementById('restartBtn');
+            const counterElement = document.getElementById('counter');
+            
+            // Card values and suits
+            const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+            const suits = [
+                { symbol: '♥', name: 'hearts', color: 'red' },
+                { symbol: '♦', name: 'diamonds', color: 'red' },
+                { symbol: '♣', name: 'clubs', color: 'black' },
+                { symbol: '♠', name: 'spades', color: 'black' }
+            ];
+            
+            // Love messages
+            const loveMessages = [
+                "The way she says your name like it's the only one that matters.",
+                "How her voice lowers when she's being serious and comforting.",
+                "Her laugh—it's your favorite sound in the universe.",
+                "How she texts you \"baby\" when you're upset, like a warm balm.",
+                "The way she always promises to come back, even if she's away.",
+                "Her writing—it's full of feeling and raw truth, and you love reading her soul through her words.",
+                "How her sleepy voice on call feels like a hug.",
+                "Her little pout when she's annoyed.",
+                "Her brain—how sharp, insightful, and brilliant she is.",
+                "How she fights for what she believes in, no matter how hard.",
+                "How even in silence, being with her feels like poetry.",
+                "The way she talks about her dreams—like they're sacred.",
+                "Her hands, the way they fit in yours, the warmth.",
+                "How she remembers little things about you that no one else does.",
+                "Her patience, even when you know you're difficult.",
+                "How she gives you space when you need it but never leaves.",
+                "The fact that she knows you better than you know yourself.",
+                "Her eye rolls—every one of them is secretly precious to you.",
+                "How she shows up for you, again and again and again.",
+                "The way she calls you \"pakhi.\"",
+                "How she makes you want to be better—without asking you to.",
+                "How she never fails to compliment you when you least expect it.",
+                "How her anger never scares you—it reminds you she cares.",
+                "How protective she is about your emotions.",
+                "How she creates a safe place—even when she doesn't feel like it.",
+                "Her passion, how deeply she feels everything.",
+                "Her fear of losing you—it shows how deeply she loves.",
+                "Her vulnerability when she lets you see her darkest corners.",
+                "The way she softens when she talks about the future.",
+                "Her love for writing—how she leaves pieces of her heart behind.",
+                "How she looks at you like you matter more than anything.",
+                "Her voice when she sings—even if it's just for you.",
+                "How she smells—even through the screen you feel like you know.",
+                "Her pride in you—even when you doubt yourself.",
+                "How she forgives you, again and again, even when you mess up.",
+                "Her plans for your future, spoken or unspoken.",
+                "How she wants to heal, and she lets you try to help.",
+                "The way she holds your gaze when she's trying to say something she can't say out loud.",
+                "How she listens—really listens.",
+                "How her goodnight texts linger in your chest.",
+                "How her pain feels like your pain too.",
+                "Her resilience, how she keeps going, no matter what.",
+                "The way she texts you at odd hours when she's missing you.",
+                "How she's always honest with you—even when it's hard.",
+                "How she once called you her \"home.\"",
+                "Her possessiveness—when it's playful, when it's real.",
+                "How even her silence says \"I love you.\"",
+                "How she makes you feel like you're enough, even when you don't.",
+                "The way she dreams with you.",
+                "How you can fight with her but never feel unloved.",
+                "The way she always finds a way back to you.",
+                "And finally, after everything, how she is your heart's greatest treasure."
+            ];
+            
+            // Shuffle the messages
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+            
+            const shuffledMessages = shuffleArray([...loveMessages]);
+            
+            // Create deck of cards
+            const deck = [];
+            let messageIndex = 0;
+            
+            suits.forEach(suit => {
+                values.forEach(value => {
+                    deck.push({
+                        value: value,
+                        suit: suit,
+                        message: shuffledMessages[messageIndex]
+                    });
+                    messageIndex++;
+                });
+            });
+            
+            // Shuffle the deck
+            const shuffledDeck = shuffleArray(deck);
+            
+            // Create card elements
+            shuffledDeck.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'card';
+                
+                // Card front
+                const cardFront = document.createElement('div');
+                cardFront.className = 'card-face card-front';
+                
+                const cardDesign = document.createElement('div');
+                cardDesign.className = 'card-design';
+                
+                const valueTop = document.createElement('div');
+                valueTop.className = `card-value card-value-top ${card.suit.color}`;
+                valueTop.textContent = card.value;
+                
+                const suitTop = document.createElement('div');
+                suitTop.className = `card-suit ${card.suit.color}`;
+                suitTop.textContent = card.suit.symbol;
+                
+                const valueBottom = document.createElement('div');
+                valueBottom.className = `card-value card-value-bottom ${card.suit.color}`;
+                valueBottom.textContent = card.value;
+                
+                const suitBottom = document.createElement('div');
+                suitBottom.className = `card-suit ${card.suit.color}`;
+                suitBottom.textContent = card.suit.symbol;
+                
+                valueTop.appendChild(suitTop);
+                valueBottom.appendChild(suitBottom);
+                
+                cardDesign.appendChild(valueTop);
+                cardDesign.appendChild(valueBottom);
+                cardFront.appendChild(cardDesign);
+                
+                // Card back
+                const cardBack = document.createElement('div');
+                cardBack.className = 'card-face card-back';
+                cardBack.textContent = card.message;
+                
+                // Add front and back to the card
+                cardElement.appendChild(cardFront);
+                cardElement.appendChild(cardBack);
+                
+                // Add card to container
+                cardsContainer.appendChild(cardElement);
+            });
+            
+            // Flip card on click
+            let flippedCount = 0;
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    if (!this.classList.contains('flipped')) {
+                        this.classList.add('flipped');
+                        flippedCount++;
+                        counterElement.textContent = flippedCount;
+                        
+                        // Check if all cards have been flipped
+                        if (flippedCount === cards.length) {
+                            setTimeout(() => {
+                                heartContainer.style.display = 'flex';
+                            }, 1000);
+                        }
+                    }
+                });
+            });
+            
+            // Heart click event
+            heart.addEventListener('click', function() {
+                this.style.animation = 'explode 1s forwards';
+                
+                // Create confetti effect
+                for (let i = 0; i < 100; i++) {
+                    createConfetti();
+                }
+                
+                setTimeout(() => {
+                    heartContainer.style.display = 'none';
+                    finalMessage.style.display = 'flex';
+                }, 1000);
+            });
+            
+            // Create confetti particles
+            function createConfetti() {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.width = '12px';
+                confetti.style.height = '12px';
+                confetti.style.backgroundColor = getRandomColor();
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '50%';
+                confetti.style.opacity = '1';
+                confetti.style.animation = `confetti ${Math.random() * 3 + 2}s linear`;
+                
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+            
+            // Get random color
+            function getRandomColor() {
+                const colors = ['#d4af37', '#c41e3a', '#ffffff', '#ffd700', '#ff69b4'];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+            
+            // Restart button
+            restartBtn.addEventListener('click', function() {
+                location.reload();
+            });
+        });
+    </script>
+</body>
+</html>
